@@ -1,0 +1,90 @@
+PDS_VERSION_ID               = PDS3
+
+/* Identification Information */
+DATA_SET_ID                  = "MRO-M-CTX-HiROC-V1.0"
+PRODUCT_ID                   = "P01_001330_1221_XN_57S223W"
+PRODUCER_INSTITUTION_NAME    = "UNIVERSITY OF ARIZONA"
+PRDOUCER_ID                  = "UA"
+PRODUCER_FULL_NAME           = "ALFRED MCEWEN"
+SOURCE_PRODUCT_ID            = NULL
+MISSION_NAME                 = "MARS RECONNAISSANCE ORBITER"
+SPACECRAFT_NAME              = "MARS RECONNAISSANCE ORBITER"
+INSTRUMENT_NAME              = "CONTEXT CAMERA"
+INSTRUMENT_ID                = "MRO-CTX"
+TARGET_NAME                  = "MARS"
+START_TIME                   = "2006-11-08T02:24:53.980"
+ORBIT_NUMBER                 = 1330
+SPACECRAFT_CLOCK_START_COUNT = "0847419912:208"
+PRODUCT_CREATION_TIME        = 2015-06-12T12:28:36
+SOFTWARE_NAME                = "CTX_Finalizer (1.8 2012/07/11 19:12:08)"
+NOTE                         = "Special map product for HiROC"
+
+OBJECT = IMAGE_MAP_PROJECTION
+    MAP_PROJECTION_TYPE          = "EQUIRECTANGULAR"
+    PROJECTION_LATITUDE_TYPE     = PLANETOCENTRIC
+    A_AXIS_RADIUS                = 3396.19 <KM>
+    B_AXIS_RADIUS                = 3396.19 <KM>
+    C_AXIS_RADIUS                = 3376.2 <KM>
+    FIRST_STANDARD_PARALLEL      = "N/A"
+    SECOND_STANDARD_PARALLEL     = "N/A"
+    COORDINATE_SYSTEM_NAME       = PLANETOCENTRIC
+    POSITIVE_LONGITUDE_DIRECTION = EAST
+    KEYWORD_LATITUDE_TYPE        = PLANETOCENTRIC
+    CENTER_LATITUDE              = -55 <DEG>
+    CENTER_LONGITUDE             = 135.49294151097 <DEG>
+    LINE_FIRST_PIXEL             = 1
+    LINE_LAST_PIXEL              = 7976
+    SAMPLE_FIRST_PIXEL           = 1
+    SAMPLE_LAST_PIXEL            = 6185
+    MAP_PROJECTION_ROTATION      = 0.0 <DEG>
+    MAP_RESOLUTION               = 11807.981413876 <PIX/DEG>
+    MAP_SCALE                    = 0.005 <KM/PIXEL>
+    MAXIMUM_LATITUDE             = -57.375624098154 <DEG>
+    MINIMUM_LATITUDE             = -58.051059562142 <DEG>
+    EASTERNMOST_LONGITUDE        = 135.94950291208 <DEG>
+    WESTERNMOST_LONGITUDE        = 135.03638010985 <DEG>
+    LINE_PROJECTION_OFFSET       = -677489.5 <PIXEL>
+    SAMPLE_PROJECTION_OFFSET     = 3093.5 <PIXEL>
+END_OBJECT = IMAGE_MAP_PROJECTION
+
+/* The JPEG2000 image data file associated with this label. */
+OBJECT = COMPRESSED_FILE
+    FILE_NAME                  = "P01_001330_1221_XN_57S223W.JP2"
+    RECORD_TYPE                = UNDEFINED
+    ENCODING_TYPE              = "JP2"
+    ENCODING_TYPE_VERSION_NAME = "ISO/IEC15444-1:2004"
+    INTERCHANGE_FORMAT         = BINARY
+    /* The name of the original source file. */
+    UNCOMPRESSED_FILE_NAME     = "P01_001330_1221_XN_57S223W.31417.img"
+    /* The amount of original image data. */
+    REQUIRED_STORAGE_BYTES     = 49331560 <BYTES>
+    ^DESCRIPTION               = "JP2INFO.TXT"
+END_OBJECT = COMPRESSED_FILE
+
+/* The source image data definition. */
+OBJECT = UNCOMPRESSED_FILE
+    FILE_NAME    = "P01_001330_1221_XN_57S223W.31417.img"
+    RECORD_TYPE  = FIXED_LENGTH
+    RECORD_BYTES = 6185 <BYTES>
+    FILE_RECORDS = 7976
+    ^IMAGE       = "P01_001330_1221_XN_57S223W.31417.img"
+    OBJECT = IMAGE
+        LINES                      = 7976
+        LINE_SAMPLES               = 6185
+        BANDS                      = 1
+        CENTER_FILTER_WAVELENGTH   = 0.65 <micrometers>
+        BANDWIDTH                  = 0.15 <micrometers>
+        BAND_STORAGE_TYPE          = BAND_SEQUENTIAL
+        OFFSET                     = 0.0043897498650718
+        SCALING_FACTOR             = 2.7950282433289e-05
+        SAMPLE_BITS                = 8
+        SAMPLE_BIT_MASK            = 2#11111111#
+        SAMPLE_TYPE                = MSB_UNSIGNED_INTEGER
+        CORE_NULL                  = 0
+        CORE_LOW_REPR_SATURATION   = 1
+        CORE_LOW_INSTR_SATURATION  = 1
+        CORE_HIGH_REPR_SATURATION  = 255
+        CORE_HIGH_INSTR_SATURATION = 255
+    END_OBJECT = IMAGE
+END_OBJECT = UNCOMPRESSED_FILE
+END
