@@ -1,6 +1,4 @@
-
-#' @export
-reducer <- function(dat) {
+reduce <- function(dat) {
   obj_stack <- list(list())
   name_stack <- c()
   # Assign a value
@@ -15,6 +13,8 @@ reducer <- function(dat) {
       obj_stack[[2]][[name_stack[1]]] <- obj_stack[[1]]
       obj_stack <- obj_stack[2:length(obj_stack)]
       name_stack <- name_stack[2:length(name_stack)]
+    } else if (cmd$action == 'pointer') {
+      obj_stack[[1]][[cmd$name]] <- list(value = cmd$value, offset = cmd$offset)
     }
   }
 

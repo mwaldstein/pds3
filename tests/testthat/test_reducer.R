@@ -1,11 +1,15 @@
 context("reducer tests")
 
+util <- pds3_lexer_parser()
+parser <- util$parser
+lexer <- util$lexer
+
 test_that("Simple Assignment", {
   string <- "TEST = 12312
   END"
 
   dat <- parser$parse(string, lexer)
-  res <- reducer(dat)
+  res <- pds3::reduce(dat)
 
   expect_length(res, 1)
   expect_equal(res$TEST, 12312)
@@ -17,7 +21,7 @@ test_that("Simple Assignment", {
   END"
 
   dat <- parser$parse(string, lexer)
-  res <- reducer(dat)
+  res <- reduce(dat)
 
   expect_length(res, 2)
   expect_equal(res$TEST, 12312)
@@ -31,7 +35,7 @@ test_that("Simple Assignment 3", {
   END"
 
   dat <- parser$parse(string, lexer)
-  res <- reducer(dat)
+  res <- reduce(dat)
 
   expect_length(res, 3)
   expect_equal(res$TEST, 12312)
@@ -47,7 +51,7 @@ test_that("Simple OBJECT", {
 
   dat <- parser$parse(string, lexer)
   expect_length(dat, 4)
-  res <- reducer(dat)
+  res <- reduce(dat)
 
   expect_length(res, 2)
   expect_equal(res$TEST, 12312)
@@ -68,15 +72,15 @@ test_that("Merger Multiple", {
   END"
   res <- lapply(c(string1, string2), function(string) {
     dat <- parser$parse(string, lexer)
-    res <- reducer(dat)
+    res <- reduce(dat)
     res <- t(data.frame(I(res)))
     return(res)
   })
   res <- do.call(rbind.data.frame, res)
-  cat("\n")
-  str(res)
-  cat("\n")
-  print(res)
-  print(res$TEST)
+  # cat("\n")
+  # str(res)
+  # cat("\n")
+  # print(res)
+  # print(res$TEST)
 
 })

@@ -1,6 +1,6 @@
-Parser <- R6::R6Class("Parser",
+parser <- R6::R6Class("Parser",
   public = list(
-    tokens = TOKENS,
+    tokens = TOKENS[TOKENS != 'COMMENT'],
     literals = LITERALS,
     name_stack = c(),
     obj_stack = list(list()),
@@ -22,13 +22,15 @@ Parser <- R6::R6Class("Parser",
                                   | DATE
                                   | TIME
                                   | IDENTIFIER
-                                  | DINT
-                                  | BINT
-                                  | REAL
-                                  | NUMBER
+                                  | number
                                   | quantity
                                   | sequence", p) {
 
+      p$set(1, p$get(2))
+    },
+    p_number = function(doc="number : DINT
+                                    | BINT
+                                    | REAL", p) {
       p$set(1, p$get(2))
     },
     p_sequence = function(doc="sequence : '(' value ')'
@@ -46,17 +48,18 @@ Parser <- R6::R6Class("Parser",
         p$set(1, c(p$get(2), p$get(3)))
       }
     },
-    p_value_quantity = function(doc="quantity : NUMBER UNIT", p) {
+    p_value_quantity = function(doc="quantity : number UNIT", p) {
       p$set(1, list(quantity = p$get(2), unit = p$get(3)))
     },
-    p_detailed_pointer = function(doc="pointer : POINTER '=' '(' STRING ',' NUMBER ')'
+    p_detailed_pointer = function(doc="pointer : POINTER '=' '(' STRING ',' DINT ')'
                                                | POINTER '=' STRING", p) {
-      tmp <- list(action = 'pointer', name = p$get(5))
+      tmp <- list(action = 'pointer', name = p$get(2))
       if (p$length() == 4) {
-        tmp$value <- g$get(4)
+        tmp$value <- p$get(4)
+        tmp$offset <- -1
       } else {
-        tmp$value <- g$get(5)
-        tmp$offset <- g$get(7)
+        tmp$value <- p$get(5)
+        tmp$offset <- p$get(7)
       }
       p$set(1, tmp)
     },
@@ -95,6 +98,3 @@ Parser <- R6::R6Class("Parser",
     }
   )
 )
-
-#' @export
-parser <- rly::yacc(Parser)

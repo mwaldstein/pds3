@@ -1,5 +1,7 @@
 context("lexer tests")
 
+lexer <- pds3:::pds3_lexer_parser()$lexer
+
 expect_lex_token <- function(string, value, type) {
   lexer$input(string)
   token <- lexer$token()

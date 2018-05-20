@@ -1,0 +1,16 @@
+context('Real file tests')
+# mv10110413_6000000_001_rr.lbl  P01_001330_1221_XN_57S223W.LBL
+
+test_that("mv10110413_6000000_001_rr.lbl", {
+  file.name <- "mv10110413_6000000_001_rr.lbl"
+  test.file <- file.path("..", "testdata", file.name)
+
+  res <- pds3_read(test.file, assume_complete = T)
+  expect_length(res, 3)
+  expect_equal(nchar(res$extra_data), 0)
+  expect_length(res$odl, 109)
+  expect_equal(res$odl$MISSION_NAME, "EPOXI")
+  expect_equal(res$odl[["EPOXI:INTERPOLATED_PIXEL_COUNT"]], 0)
+  expect_equal(res$odl[["^EXT_DESTRIPE_IMAGE"]]$offset, 3301)
+  expect_equal(res$odl$EXT_DESTRIPE_IMAGE$UNIT, "DATA_NUMBER")
+})

@@ -2,7 +2,7 @@ Package: pds3
 Version: 0.0.0.9000
 Title: Manipulate PDS3 ODL files
 Description: Currently only reads PDS3 ODL formatted files, typically used in
-NASA missions
+  NASA missions
 Authors@R: person("Micah", "Waldstein", , "micah@waldste.in", c("aut", "cre"))
 License: GPL-3
 Encoding: UTF-8
@@ -12,3 +12,4 @@ Suggests:
     testthat
 Imports:
     rly
+RoxygenNote: 6.0.1

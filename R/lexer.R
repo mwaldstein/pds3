@@ -6,7 +6,7 @@
 TOKENS <- c("IDENTIFIER", "POINTER", "STRING", "SYMBOL",
             "DATE", "TIME",
             "REAL", "BINT", "DINT",
-            "NUMBER", "UNIT",
+            "UNIT",
             "END", "END_GROUP", "END_OBJECT",
             "BEGIN_GROUP", "BEGIN_OBJECT",
             "COMMENT")
@@ -80,6 +80,3 @@ odl_lexer <- R6::R6Class("Lexer",
     }
   )
 )
-
-#' @export
-lexer <- rly::lex(odl_lexer)

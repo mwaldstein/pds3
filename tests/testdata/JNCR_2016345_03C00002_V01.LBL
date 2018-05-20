@@ -1,0 +1,67 @@
+PDS_VERSION_ID                = PDS3
+
+/* FILE CHARACTERISTICS */
+
+RECORD_TYPE                   = FIXED_LENGTH
+RECORD_BYTES                  = 3296
+FILE_RECORDS                  = 3072
+
+/* POINTERS TO DATA OBJECTS */
+
+^IMAGE                        = "JNCR_2016345_03C00002_V01.IMG"
+
+/* IDENTIFICATION DATA ELEMENTS */
+
+FILE_NAME                     = "JNCR_2016345_03C00002_V01.IMG"
+SPACECRAFT_NAME               = JUNO
+MISSION_PHASE_NAME            = "SCIENCE ORBITS"
+TARGET_NAME                   = JUPITER
+INSTRUMENT_ID                 = "JNC"
+INSTRUMENT_HOST_NAME          = "JUNO"
+INSTRUMENT_NAME               = "JUNO EPO CAMERA"
+PRODUCER_ID                   = JUNO_JUNOCAM_TEAM
+DATA_SET_ID                   = "JUNO-J-JUNOCAM-3-RDR-L1A-V1.0"
+STANDARD_DATA_PRODUCT_ID      = "JUNOCAM-RDR"
+PRODUCT_CREATION_TIME         = 2017-05-31T18:42:49
+PRODUCT_VERSION_ID            = "01"
+PRODUCT_ID                    = "JNCR_2016345_03C00002_V01"
+SOURCE_PRODUCT_ID             = "3D-0900010002-2016-349T17.19.13"
+START_TIME                    = 2016-12-10T17:15:14.358
+IMAGE_TIME                    = 2016-12-10T17:15:14.358
+STOP_TIME                     = 2016-12-10T17:15:17.350
+SPACECRAFT_CLOCK_START_COUNT  = "534662301:164"
+SPACECRAFT_CLOCK_STOP_COUNT   = "N/A"
+
+/* DESCRIPTIVE DATA ELEMENTS */
+
+ORBIT_NUMBER                  = 3
+SOFTWARE_NAME                 = "JUNOMAKEPDS.PY 0.4"
+PROCESSING_LEVEL_ID           = "3"
+FOCAL_PLANE_TEMPERATURE       = 273.0 <K>
+INTERFRAME_DELAY              = 0.374 <s>
+SUB_SPACECRAFT_LATITUDE       = 18.6701
+SUB_SPACECRAFT_LONGITUDE      = 42.0802
+SPACECRAFT_ALTITUDE           = 1403871.4 <km>
+SOLAR_DISTANCE                = 8.1611e+08 <km>
+SAMPLE_BIT_MODE_ID            = "SQROOT"
+EXPOSURE_DURATION             = 3.200000 <ms>
+JNO:TDI_STAGES_COUNT          = 1
+SAMPLING_FACTOR               = 1
+FILTER_NAME                   = ('BLUE', 'GREEN', 'RED')
+COMPRESSION_TYPE              = "INTEGER COSINE TRANSFORM"
+RATIONALE_DESC                = "Approach movie imaging (relative time:
+PJ03-000T23:48)"
+
+/* DATA OBJECT DEFINITIONS */
+
+OBJECT                        = IMAGE
+  LINES                       = 3072
+  LINE_SAMPLES                = 1648
+  SAMPLE_TYPE                 = UNSIGNED_INTEGER
+  LINE_PREFIX_BYTES           = 0
+  LINE_SUFFIX_BYTES           = 0
+  SAMPLE_BITS                 = 16
+  SAMPLE_BIT_MASK             = 2#1111111111111111#
+  MD5_CHECKSUM                = "9ab98a1df127b82047e073e569cff24f"
+END_OBJECT                    = IMAGE
+END
