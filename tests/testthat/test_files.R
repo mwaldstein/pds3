@@ -14,3 +14,11 @@ test_that("mv10110413_6000000_001_rr.lbl", {
   expect_equal(res$odl[["^EXT_DESTRIPE_IMAGE"]]$offset, 3301)
   expect_equal(res$odl$EXT_DESTRIPE_IMAGE$UNIT, "DATA_NUMBER")
 })
+
+test_that("ESP_011707_1440_COLOR.LBL", {
+  file.name <- "ESP_011707_1440_COLOR.LBL"
+  test.file <- file.path("..", "testdata", file.name)
+
+  res <- pds3_read(test.file, assume_complete = T)
+  expect_length(res, 3)
+})

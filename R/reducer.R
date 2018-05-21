@@ -5,16 +5,22 @@ reduce <- function(dat) {
 
   for (i in seq_along(dat)) {
     cmd <- dat[[i]]
-    if (cmd$action == 'assignment') obj_stack[[1]][[cmd$name]] <- cmd$value
+    # cat(sprintf("\n[%03d:%d:%d]\t%s #%s#", i, length(obj_stack),
+    #             length(name_stack), cmd$action, cmd$name))
+    if (cmd$action == 'assignment') obj_stack[[length(obj_stack)]][[cmd$name]] <- cmd$value
     else if (cmd$action == 'group_start') {
-      obj_stack <- list(list(), unlist(obj_stack, recursive = F))
+      obj_stack[[length(obj_stack) + 1]] <- list()
       name_stack <- c(cmd$name, name_stack)
     } else if (cmd$action == 'group_end') {
-      obj_stack[[2]][[name_stack[1]]] <- obj_stack[[1]]
-      obj_stack <- obj_stack[2:length(obj_stack)]
-      name_stack <- name_stack[2:length(name_stack)]
+      obj_stack[[length(obj_stack) - 1]][[name_stack[1]]] <- obj_stack[[length(obj_stack)]]
+      obj_stack <- obj_stack[1:length(obj_stack) - 1]
+      if (length(name_stack) > 1) {
+        name_stack <- name_stack[2:length(name_stack)]
+      } else {
+        name_stack <- c()
+      }
     } else if (cmd$action == 'pointer') {
-      obj_stack[[1]][[cmd$name]] <- list(value = cmd$value, offset = cmd$offset)
+      obj_stack[[length(obj_stack)]][[cmd$name]] <- list(value = cmd$value, offset = cmd$offset)
     }
   }
 

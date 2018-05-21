@@ -1,0 +1,89 @@
+---
+title: "Getting Started With PDS3"
+author: "Micah J Waldstein (micah@waldste.in"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started With PDS3}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+PDS3 is a data standard used extensively by NASA for archiving data from science
+missions, maintained by JPL. While being replaced by PDS4, PDS4 covers all
+currently active missions and those covering the history of US space
+exploration.
+
+The R pds3 package provides tools for parsing PDS3 data, particularly the ODL
+label format which describes all the metadata of data collection. Want to plot
+a heatmap of Mars of all the images taken? This is the package for you!
+
+## Getting Started
+
+The package is not yet on CRAN, so to install you'll want to use `devtools` to
+get the development version from Github.
+
+```{r eval=FALSE}
+# Install devtools if you don't already have it
+install.packages("devtools")
+# Install the development version of pds3
+devtools::install_github("mwaldstein/pds3")
+```
+
+### Finding Data
+
+If you're exploring this package, chances are you already have a collection of
+PDS files, but if you're interested in exploring NASA data, the place to get
+started is [The Planetary Data System](https://pds.jpl.nasa.gov/datasearch/data-search/).
+
+Once you find a mission you're interested in exploring, finding the data
+explorer is typically straight forward. The metadata this package processes is
+typically stored in .lbl files. For instance, we'll look at the labels from the
+Mars Reconnaissance Orbiter's HiRise experiment, particularly the data
+associated with [this
+image](http://ode.rsl.wustl.edu/mars/indexproductpage.aspx?product_idgeo=13465046).
+
+
+## Reading & Parsing Data
+
+We'll start by grabbing the label (LBL) file.
+
+```{r fetch, cache=T}
+href <- 'http://hirise.lpl.arizona.edu/PDS/RDR/ESP/ORB_011700_011799/ESP_011707_1440/ESP_011707_1440_COLOR.LBL'
+req <- curl::curl_fetch_memory(href)
+dat <- rawToChar(req$content)
+```
+
+Now we have the data, we'll process it using `parse_pds3`.
+
+```{r process}
+library(pds3)
+res <- pds3_read(dat)
+str(res$odl)
+```
+
+## Cautionary Notes
+
+All of the data you can access from NASA missions is public, but be aware that
+if you are going to download a large amount, there are almost always better
+ways than web scraping - be it either a catalog-only download or via FTP,
+investigate and be sure to be considerate.
+
+Also of note that the data is public and free to use, it is the product of a
+lot of hard work and it is appropriate to cite the data source and the
+principle investigators of the instrument whose data you are using. NASA
+provides a guide to [Citing PDS3
+Data](https://pds.nasa.gov/datastandards/pds3/citing-pds3-data.shtml)
+
+## References
+
+ * The MRO-M-HIRISE-3-RDR-V1.0 data set was obtained from the [Planetary Data System (PDS)](https://pds.nasa.gov).
+ * McEwen, A., Mars Reconnaissance Orbiter High Resolution Imaging Science Experiment, Reduced Data Record, MRO-M-HIRISE-3-RDR-V1.0, NASA Planetary Data System, 2007.
+

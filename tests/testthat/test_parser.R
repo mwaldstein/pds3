@@ -36,3 +36,14 @@ test_that("Pointer Assignment", {
   res <- parser$parse(string, lexer)
   expect_length(res, 1)
 })
+
+test_that("List Parser w/ units", {
+  string <- "CENTER_FILTER_WAVELENGTH   = (900 <NM>, 700 <NM>, 500 <NM>)"
+  res <- parser$parse(string, lexer)
+  expect_length(res, 1)
+  expect_length(res[[1]], 3)
+  expect_length(res[[1]]$value, 3)
+  expect_equal(res[[1]]$value[[1]]$value, 900)
+  expect_equal(res[[1]]$value[[2]]$value, 700)
+  expect_equal(res[[1]]$value[[3]]$value, 500)
+})

@@ -44,12 +44,16 @@ parser <- R6::R6Class("Parser",
                                                       | sequence_values value", p) {
       if (p$length() == 3 && p$get(3) == ",") {
         p$set(1, p$get(2))
+      } else if (typeof(p$get(2)) == 'list' && !is.null(p$get(2)$unit)) {
+        p$set(1, list(p$get(2), p$get(3)))
       } else {
-        p$set(1, c(p$get(2), p$get(3)))
+        tmp <- p$get(2)
+        tmp[[length(tmp) + 1]] <- p$get(3)
+        p$set(1, tmp)
       }
     },
     p_value_quantity = function(doc="quantity : number UNIT", p) {
-      p$set(1, list(quantity = p$get(2), unit = p$get(3)))
+      p$set(1, list(value = p$get(2), unit = p$get(3)))
     },
     p_detailed_pointer = function(doc="pointer : POINTER '=' '(' STRING ',' DINT ')'
                                                | POINTER '=' STRING", p) {
