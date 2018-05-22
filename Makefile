@@ -4,17 +4,11 @@ PKGSRC  := $(shell basename $(PWD))
 TGZ     := $(PKGSRC)_$(PKGVERS).tar.gz
 TGZVNR  := $(PKGSRC)_$(PKGVERS)-vignettes-not-rebuilt.tar.gz
 
-# Specify the directory holding R binaries. To use an alternate R build (say a
-# pre-prelease version) use `make RBIN=/path/to/other/R/` or `export RBIN=...`
-# If no alternate bin folder is specified, the default is to use the folder
-# containing the first instance of R on the PATH.
-RSCRIPT ?= $(shell dirname "`which Rscript`")
-
 all: version doc build
 .PHONY: doc clean build vignettes check revdep data
 
 NAMESPACE: R/*.R
-	$(RSCRIPT) -e 'devtools::document()'
+	Rscript -e 'devtools::document()'
 
 # build package documentation
 doc:

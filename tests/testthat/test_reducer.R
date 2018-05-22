@@ -9,7 +9,7 @@ test_that("Simple Assignment", {
   END"
 
   dat <- parser$parse(string, lexer)
-  res <- pds3::reduce(dat)
+  res <- pds3:::reduce(dat)
 
   expect_length(res, 1)
   expect_equal(res$TEST, 12312)
@@ -21,7 +21,7 @@ test_that("Simple Assignment", {
   END"
 
   dat <- parser$parse(string, lexer)
-  res <- reduce(dat)
+  res <- pds3:::reduce(dat)
 
   expect_length(res, 2)
   expect_equal(res$TEST, 12312)
@@ -35,7 +35,7 @@ test_that("Simple Assignment 3", {
   END"
 
   dat <- parser$parse(string, lexer)
-  res <- reduce(dat)
+  res <- pds3:::reduce(dat)
 
   expect_length(res, 3)
   expect_equal(res$TEST, 12312)
@@ -51,7 +51,7 @@ test_that("Simple OBJECT", {
 
   dat <- parser$parse(string, lexer)
   expect_length(dat, 4)
-  res <- reduce(dat)
+  res <- pds3:::reduce(dat)
 
   expect_length(res, 2)
   expect_equal(res$TEST, 12312)
