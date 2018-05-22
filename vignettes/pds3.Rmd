@@ -1,6 +1,6 @@
 ---
 title: "Getting Started With PDS3"
-author: "Micah J Waldstein (micah@waldste.in"
+author: "Micah J Waldstein (micah@waldste.in)"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
