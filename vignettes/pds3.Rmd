@@ -82,8 +82,20 @@ principle investigators of the instrument whose data you are using. NASA
 provides a guide to [Citing PDS3
 Data](https://pds.nasa.gov/datastandards/pds3/citing-pds3-data.shtml)
 
+One cool thing is that many PDS catalogs include citation information in a PDS3
+formatted file we can use this package to extract!
+
+```{r fetch_catalog, cache=T}
+cit_href <- "https://hirise.lpl.arizona.edu/PDS/CATALOG/RDR_DS.CAT"
+cit_req <- curl::curl_fetch_memory(cit_href)
+cit_dat <- rawToChar(cit_req$content)
+cit_res <- pds3_read(cit_dat)
+
+cit_res$odl$DATA_SET$DATA_SET_INFORMATION$CITATION_DESC
+```
+
 ## References
 
  * The MRO-M-HIRISE-3-RDR-V1.0 data set was obtained from the [Planetary Data System (PDS)](https://pds.nasa.gov).
- * McEwen, A., Mars Reconnaissance Orbiter High Resolution Imaging Science Experiment, Reduced Data Record, MRO-M-HIRISE-3-RDR-V1.0, NASA Planetary Data System, 2007.
+ * `r cit_res$odl$DATA_SET$DATA_SET_INFORMATION$CITATION_DESC`
 

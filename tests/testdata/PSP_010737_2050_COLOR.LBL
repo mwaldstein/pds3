@@ -1,0 +1,150 @@
+PDS_VERSION_ID            = PDS3
+/* Identification Information */
+NOT_APPLICABLE_CONSTANT   = -9998
+DATA_SET_ID               = "MRO-M-HIRISE-3-RDR-V1.1"
+DATA_SET_NAME             = "MRO MARS HIGH RESOLUTION IMAGING SCIENCE
+                            EXPERIMENT RDR V1.1"
+PRODUCER_INSTITUTION_NAME = "UNIVERSITY OF ARIZONA"
+PRODUCER_ID               = "UA"
+PRODUCER_FULL_NAME        = "ALFRED MCEWEN"
+OBSERVATION_ID            = "PSP_010737_2050"
+PRODUCT_ID                = "PSP_010737_2050_COLOR"
+PRODUCT_VERSION_ID        = "2.0"
+INSTRUMENT_HOST_NAME      = "MARS RECONNAISSANCE ORBITER"
+INSTRUMENT_HOST_ID        = "MRO"
+INSTRUMENT_NAME           = "HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT"
+INSTRUMENT_ID             = "HIRISE"
+TARGET_NAME               = "MARS"
+MISSION_PHASE_NAME        = "PRIMARY SCIENCE PHASE"
+ORBIT_NUMBER              = 10737
+SOURCE_PRODUCT_ID         = (PSP_010737_2050_BG12_0, PSP_010737_2050_BG12_1,
+                            PSP_010737_2050_RED4_0, PSP_010737_2050_RED4_1,
+                            PSP_010737_2050_IR10_0, PSP_010737_2050_BG13_0,
+                            PSP_010737_2050_BG13_1, PSP_010737_2050_RED5_0,
+                            PSP_010737_2050_RED5_1, PSP_010737_2050_IR11_0,
+                            PSP_010737_2050_IR11_1)
+RATIONALE_DESC            = "Clay diversity on cliff in Mawrth Vallis"
+SOFTWARE_NAME             = "PDS_to_JP2 v3.17 (1.51 2010/04/30 08:03:43)"
+OBJECT = IMAGE_MAP_PROJECTION
+    ^DATA_SET_MAP_PROJECTION     = "DSMAP.CAT"
+    MAP_PROJECTION_TYPE          = "EQUIRECTANGULAR"
+    PROJECTION_LATITUDE_TYPE     = PLANETOCENTRIC
+    /* NOTE: The EQUIRECTANGULAR projection is based on the formula  */
+    /* for a sphere. To eliminate confusion in the                   */
+    /* IMAGE_MAP_PROJECTION object we have set all three radii,      */
+    /* A_AXIS_RADIUS, B_AXIS_RADIUS, and C_AXIS_RADIUS to the same   */
+    /* number. The value recorded in the three radii is the local    */
+    /* radius at the CENTER_LATITUDE on the Mars ellipsoid. That is, */
+    /* equatorial radius of 3396.190000 km and polar radius of       */
+    /* 3376.200000 kilometers. Using the local radius of the         */
+    /* ellipsoid implies that the MAP_SCALE and MAP_RESOLUTION are   */
+    /* true at the CENTER_LATITUDE.                                  */
+    A_AXIS_RADIUS                = 3393.8332607584 <KM>
+    B_AXIS_RADIUS                = 3393.8332607584 <KM>
+    C_AXIS_RADIUS                = 3393.8332607584 <KM>
+    COORDINATE_SYSTEM_NAME       = PLANETOCENTRIC
+    POSITIVE_LONGITUDE_DIRECTION = EAST
+    KEYWORD_LATITUDE_TYPE        = PLANETOCENTRIC
+    /* NOTE:  CENTER_LATITUDE and CENTER_LONGITUDE describe the location  */
+    /* of the center of projection, which is not necessarily equal to the */
+    /* location of the center point of the image.                         */
+    CENTER_LATITUDE              = 20.000 <DEG>
+    CENTER_LONGITUDE             = 180.000 <DEG>
+    LINE_FIRST_PIXEL             = 1
+    LINE_LAST_PIXEL              = 69701
+    SAMPLE_FIRST_PIXEL           = 1
+    SAMPLE_LAST_PIXEL            = 12792
+    MAP_PROJECTION_ROTATION      = 0.0 <DEG>
+    MAP_RESOLUTION               = 236934.25865572 <PIX/DEG>
+    MAP_SCALE                    = 0.25 <METERS/PIXEL>
+    MAXIMUM_LATITUDE             = 24.944261290569 <DEG>
+    MINIMUM_LATITUDE             = 24.650087775209 <DEG>
+    LINE_PROJECTION_OFFSET       = 5910151.5 <PIXEL>
+    SAMPLE_PROJECTION_OFFSET     = -35283026.5 <PIXEL>
+    EASTERNMOST_LONGITUDE        = 338.52931425765 <DEG>
+    WESTERNMOST_LONGITUDE        = 338.47186347564 <DEG>
+END_OBJECT = IMAGE_MAP_PROJECTION
+/* All xxx_COUNT values are for the MRO spacecraft clock (SCLK)         */
+/* in seconds:subseconds form. A subsecond tick = 15.2588 microseconds. */
+/* All xxx_TIME values are referenced to UTC.                           */
+GROUP = TIME_PARAMETERS
+    /* Time when the observation first started */
+    MRO:OBSERVATION_START_TIME   = 2008-11-10T03:22:45.777
+    /* Time of the first image line */
+    START_TIME                   = 2008-11-10T03:22:45.828
+    SPACECRAFT_CLOCK_START_COUNT = "910754586:17293"
+    /* Time of the last image line */
+    STOP_TIME                    = 2008-11-10T03:22:51.612
+    SPACECRAFT_CLOCK_STOP_COUNT  = "910754591:65052"
+    /* Time when this RDR product was created */
+    PRODUCT_CREATION_TIME        = 2010-06-26T10:28:2
+END_GROUP = TIME_PARAMETERS
+GROUP = INSTRUMENT_SETTING_PARAMETERS
+    MRO:CCD_FLAG                = (ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON,
+                                  ON, ON, ON)
+    MRO:BINNING                 = (-9998, -9998, -9998, -9998, 1, 1, -9998,
+                                  -9998, -9998, -9998, 2, 2, 2, 2)
+    MRO:TDI                     = (-9998, -9998, -9998, -9998, 128, 128,
+                                  -9998, -9998, -9998, -9998, 128, 128, 128,
+                                  128)
+    MRO:SPECIAL_PROCESSING_FLAG = ("NULL", "NULL", "NULL", "NULL", NOMINAL,
+                                  "NULL", "NULL", "NULL", "NULL", "NULL",
+                                  NOMINAL, "NULL", NOMINAL, "NULL")
+END_GROUP = INSTRUMENT_SETTING_PARAMETERS
+GROUP = VIEWING_PARAMETERS
+    INCIDENCE_ANGLE   = 54.239143 <DEG>
+    EMISSION_ANGLE    = 6.440952 <DEG>
+    PHASE_ANGLE       = 47.800369 <DEG>
+    LOCAL_TIME        = 15.68038 <LOCALDAY/24>
+    SOLAR_LONGITUDE   = 155.274997 <DEG>
+    SUB_SOLAR_AZIMUTH = 174.952754 <DEG>
+    NORTH_AZIMUTH     = 269.999999 <DEG>
+END_GROUP = VIEWING_PARAMETERS
+/* The JPEG2000 image data file associated with this label. */
+OBJECT = COMPRESSED_FILE
+    FILE_NAME                  = "PSP_010737_2050_COLOR.JP2"
+    RECORD_TYPE                = UNDEFINED
+    ENCODING_TYPE              = "JP2"
+    ENCODING_TYPE_VERSION_NAME = "ISO/IEC15444-1:2004"
+    INTERCHANGE_FORMAT         = BINARY
+    /* The name of the original source file. */
+    UNCOMPRESSED_FILE_NAME     = "PSP_010737_2050_COLOR.IMG"
+    /* The amount of original image data. */
+    REQUIRED_STORAGE_BYTES     = 5349691152 <BYTES>
+    ^DESCRIPTION               = "JP2INFO.TXT"
+END_OBJECT = COMPRESSED_FILE
+/* The source image data definition. */
+OBJECT = UNCOMPRESSED_FILE
+    FILE_NAME    = "PSP_010737_2050_COLOR.IMG"
+    RECORD_TYPE  = FIXED_LENGTH
+    RECORD_BYTES = 25584 <BYTES>
+    FILE_RECORDS = 209103
+    ^IMAGE       = "PSP_010737_2050_COLOR.IMG"
+    OBJECT = IMAGE
+        DESCRIPTION                = "HiRISE projected and mosaicked product"
+        LINES                      = 69701
+        LINE_SAMPLES               = 12792
+        BANDS                      = 3
+        SAMPLE_TYPE                = MSB_UNSIGNED_INTEGER
+        SAMPLE_BITS                = 16
+        SAMPLE_BIT_MASK            = 2#0000001111111111#
+        /* NOTE: The conversion from DN to I/F (intensity/flux) is: */
+        /* I/F = (DN * SCALING_FACTOR) + OFFSET                     */
+        /* I/F is defined as the ratio of the observed radiance and */
+        /* the radiance of a 100% lambertian reflector with the sun */
+        /* and camera orthogonal to the observing surface.          */
+        SCALING_FACTOR             = 1.73932359518024e-04
+        OFFSET                     = 0.039680281707748
+        BAND_STORAGE_TYPE          = BAND_SEQUENTIAL
+        CORE_NULL                  = 0
+        CORE_LOW_REPR_SATURATION   = 1
+        CORE_LOW_INSTR_SATURATION  = 2
+        CORE_HIGH_REPR_SATURATION  = 1023
+        CORE_HIGH_INSTR_SATURATION = 1022
+        CENTER_FILTER_WAVELENGTH   = (900 <NM>, 700 <NM>, 500 <NM>)
+        MRO:MINIMUM_STRETCH        = (3, 3, 3)
+        MRO:MAXIMUM_STRETCH        = (1021, 1021, 1021)
+        FILTER_NAME                = ("NEAR-INFRARED", "RED", "BLUE-GREEN")
+    END_OBJECT = IMAGE
+END_OBJECT = UNCOMPRESSED_FILE
+END

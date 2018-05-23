@@ -32,13 +32,15 @@ odl_lexer <- R6::R6Class("Lexer",
     },
     # Date, with or without a time
     t_DATE = function(re=
-      '\\d{4}\\-(\\d{2}\\-\\d{2}|\\d{3})(T\\d{2}:\\d{2}(:\\d{2}(.\\d+)?)?)?(\\+\\d+|\\-\\d+|Z)?',
+      '\\d{4}\\-(\\d{2}\\-\\d{2}|\\d{3})(T\\d{2}:\\d{2}(:\\d{1,2}(.\\d+)?)?)?(\\+\\d+|\\-\\d+|Z)?',
     t) {
       return(t)
     },
     # Time without a date
     t_TIME =
-      function(re="\\d{2}:\\d{2}(:\\d{2}(\\.\\d*)?)?(\\+\\d+|\\-\\d+|Z)?", t) {
+      # NOTE the seconds can be 1 or 2 digits - this is based on files in the
+      # wild - see tests/testdata/PSP_010737_2050_COLOR.LBL
+      function(re="\\d{2}:\\d{2}(:\\d{1,2}(\\.\\d*)?)?(\\+\\d+|\\-\\d+|Z)?", t) {
         return(t)
       },
     t_REAL = function(re=

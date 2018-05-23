@@ -22,3 +22,11 @@ test_that("ESP_011707_1440_COLOR.LBL", {
   res <- pds3_read(test.file, assume_complete = T)
   expect_length(res, 3)
 })
+
+test_that("PSP_010737_2050_COLOR.LBL", {
+  file.name <- "PSP_010737_2050_COLOR.LBL"
+  test.file <- file.path("..", "testdata", file.name)
+
+  res <- pds3_read(test.file, assume_complete = T)
+  expect_length(res, 3)
+})
