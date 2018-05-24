@@ -1,5 +1,4 @@
 context('Real file tests')
-# mv10110413_6000000_001_rr.lbl  P01_001330_1221_XN_57S223W.LBL
 
 test_that("mv10110413_6000000_001_rr.lbl", {
   file.name <- "mv10110413_6000000_001_rr.lbl"
@@ -29,4 +28,14 @@ test_that("PSP_010737_2050_COLOR.LBL", {
 
   res <- pds3_read(test.file, assume_complete = T)
   expect_length(res, 3)
+})
+
+test_that("RDRCUMINDEX.LBL", {
+  file.name <- "RDRCUMINDEX.LBL"
+  test.file <- file.path("..", "testdata", file.name)
+
+  res <- pds3_read(test.file, assume_complete = T)
+  expect_length(res, 3)
+  expect_length(res$odl, 6)
+  expect_length(res$odl$RDR_INDEX_TABLE$COLUMN, 54)
 })

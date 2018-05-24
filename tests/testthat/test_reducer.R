@@ -58,29 +58,21 @@ test_that("Simple OBJECT", {
   expect_equal(res$OBJECT1$TEST2, 'INNER')
 })
 
-test_that("Merger Multiple", {
-  string1 <- "TEST = 12312
+test_that("Merger Object Assignment", {
+  string <- "TEST = 12312
   BEGIN_OBJECT = OBJECT1
     TEST2 = 'INNER'
   END_OBJECT = OBJECT1
-  END"
-  string2 <- "TEST = 312
   BEGIN_OBJECT = OBJECT1
     TEST2 = 'INNER2'
     TEST3 = 'INNER3'
   END_OBJECT = OBJECT1
   END"
-  res <- lapply(c(string1, string2), function(string) {
-    dat <- parser$parse(string, lexer)
-    res <- reduce(dat)
-    res <- t(data.frame(I(res)))
-    return(res)
-  })
-  res <- do.call(rbind.data.frame, res)
-  # cat("\n")
-  # str(res)
-  # cat("\n")
-  # print(res)
-  # print(res$TEST)
-
+  dat <- parser$parse(string, lexer)
+  res <- reduce(dat)
+  expect_length(res$OBJECT1, 2)
+  expect_equal(res$OBJECT1[[1]]$TEST2, "INNER")
+  expect_equal(res$OBJECT1[[2]]$TEST2, "INNER2")
+  expect_equal(res$OBJECT1[[2]]$TEST3, "INNER3")
+  expect_equal(res$TEST, 12312)
 })

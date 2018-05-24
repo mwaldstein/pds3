@@ -12,7 +12,27 @@ reduce <- function(dat) {
       obj_stack[[length(obj_stack) + 1]] <- list()
       name_stack <- c(cmd$name, name_stack)
     } else if (cmd$action == 'group_end') {
-      obj_stack[[length(obj_stack) - 1]][[name_stack[1]]] <- obj_stack[[length(obj_stack)]]
+      # Check if there is already a object...
+      assign_pos <- length(obj_stack) - 1
+      obj_name <- name_stack[1]
+      if (!is.null(obj_stack[[assign_pos]][[obj_name]])) {
+        # existing assignment is not a list or is a list with named objects,
+        # assume we need a new list
+        if (typeof(obj_stack[[assign_pos]][[obj_name]]) != "list" ||
+            !is.null(names(obj_stack[[assign_pos]][[obj_name]]))) {
+          obj_stack[[assign_pos]][[obj_name]] <- list(
+            obj_stack[[assign_pos]][[obj_name]],
+            obj_stack[[length(obj_stack)]])
+        } else if (is.null(names(obj_stack[[assign_pos]][[obj_name]]))) {
+          obj_stack[[assign_pos]][[obj_name]][[length(obj_stack[[assign_pos]][[obj_name]])
+                                               + 1]] <- obj_stack[[length(obj_stack)]]
+        } else {
+          message("ERROR: How?")
+        }
+      } else {
+        obj_stack[[assign_pos]][[obj_name]] <- obj_stack[[length(obj_stack)]]
+      }
+      # Drop the 'top' of the stacks
       obj_stack <- obj_stack[1:length(obj_stack) - 1]
       if (length(name_stack) > 1) {
         name_stack <- name_stack[2:length(name_stack)]
