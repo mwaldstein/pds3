@@ -15,7 +15,7 @@
 #'   parsing many files.
 #' @return A list with the following components:
 #'   \describe{
-#'     \item{label}{Raw label content.}
+#'     \item{label}{Raw label content. If there is extra_data, it will be excluded}
 #'     \item{extra_data}{Content following 'END'. If assume_complete is F or
 #'       there is no content after the label, this will be  an empty string}
 #'     \item{odl}{Parsed label content.}

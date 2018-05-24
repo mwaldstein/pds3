@@ -39,3 +39,25 @@ test_that("RDRCUMINDEX.LBL", {
   expect_length(res$odl, 6)
   expect_length(res$odl$RDR_INDEX_TABLE$COLUMN, 54)
 })
+
+test_that("Basic parsing tests", {
+  files <- c("JNCR_2016345_03C00002_V01.LBL",
+             "P01_001330_1221_XN_57S223W.LBL")
+  res <- lapply(files, function(file.name) {
+    test.file <- file.path("..", "testdata", file.name)
+    res <- pds3_read(test.file)
+    expect_length(res, 3)
+  })
+})
+
+test_that("File With End Data", {
+  file.name <- "AAREADME.TXT"
+  test.file <- file.path("..", "testdata", file.name)
+  # This file has content after 'END' so we need to set assume_complete to
+  # FALSE
+  res <- pds3_read(test.file, assume_complete = FALSE)
+  expect_length(res, 3)
+  expect_equal(nchar(res$extra_data), 14538)
+  expect_equal(res$odl$RECORD_TYPE, "STREAM")
+  expect_equal(res$odl$TEXT$INTERCHANGE_FORMAT, "ASCII")
+})
