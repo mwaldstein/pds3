@@ -7,7 +7,14 @@ expect_lex_token <- function(string, value, type) {
   token <- lexer$token()
   eval(bquote(expect_s3_class(token, c("LexToken", "R6"))))
   eval(bquote(expect_equal(.(token$type), .(type))))
-  eval(bquote(expect_equal(.(token$value), .(value))))
+  if (type == "DATE") {
+    # Dates can live in different timezones, so a deep comparison inevitable
+    # fails.
+    expect_true(token$value == value)
+    expect_true((token$value - value) == 0)
+  } else {
+    eval(bquote(expect_equal(.(token$value), .(value))))
+  }
   expect_null(lexer$token())
 }
 
@@ -46,8 +53,18 @@ test_that("Dates", {
     "2001-001",
     "1990-07-04T12:00",
     "1990-158T15:24:12Z",
+    "1990-158T15:24:2", # Not Spec, but shows up in some HiRISE sets
     "2001-001T01:10:39.457591+7")
-  mapply(expect_lex_token, tests, tests, "DATE")
+  results <- c(
+    as.POSIXlt("1990-07-04", format = "%Y-%m-%d", tz = "UTC"),
+    as.POSIXlt("1990-158", format = "%Y-%j", tz = "UTC"),
+    as.POSIXlt("2001-001", format = "%Y-%j", tz = "UTC"),
+    as.POSIXlt("1990-07-04T12:00", tz = "UTC", format = "%Y-%m-%dT%H:%M"),
+    as.POSIXlt("1990-158T15:24:12", tz = "UTC", format = "%Y-%jT%H:%M:%OS"),
+    as.POSIXlt("1990-158T15:24:2", tz = "UTC", format = "%Y-%jT%H:%M:%OS"),
+    as.POSIXlt("2001-001T01:10:39.457591+0700", format = "%Y-%jT%H:%M:%OS%z")
+  )
+  mapply(expect_lex_token, tests, results, "DATE")
 })
 
 test_that("Times", {

@@ -34,6 +34,50 @@ odl_lexer <- R6::R6Class("Lexer",
     t_DATE = function(re=
       '\\d{4}\\-(\\d{2}\\-\\d{2}|\\d{3})(T\\d{2}:\\d{2}(:\\d{1,2}(.\\d+)?)?)?(\\+\\d+|\\-\\d+|Z)?',
     t) {
+      # Change any zone to more standard format
+
+      if (grepl(":\\d{1,2}(.\\d+)?[\\+\\-][\\d:]+$", t$value, perl = T)) {
+        m <- regexec("[\\d:]+$", t$value, perl = T)
+        tz_offset <- regmatches(t$value, m)
+
+        if (grepl(":", tz_offset, fixed = TRUE)) {
+          tz_offset <- paste0(
+            lapply(strsplit(tz_offset, ":"), function(comp) {
+              sprintf("%02d", strtoi(comp))
+            })[[1]], collapse = "")
+        } else if (nchar(tz_offset) == 4) {
+          # We're already in expected form
+        } else {
+          # Assume an integer offset
+          tz_offset <- sprintf("%02d00", strtoi(tz_offset))
+        }
+        t$value <- paste0(substr(t$value, 1, m[[1]] - 1), tz_offset)
+      }
+
+      # Trailing Z = UTC which is the default already
+      t$value <- sub("[zZ]$", "", t$value)
+
+      date_formats <- c("%Y-%j", "%Y-%m-%d")
+      time_formats <- c("%H:%M",
+                        "%H:%M:%OS")
+      zone_formats <- c("", "%z")
+
+      time_zone_formats <- paste(rep(time_formats,
+                                     each = length(zone_formats)),
+                                 zone_formats, sep = "")
+      time_zone_formats <- c("", paste0("T", time_zone_formats))
+      try_formats <- paste(rep(date_formats,
+                               each = length(time_zone_formats)),
+                           time_zone_formats, sep = "")
+
+      # Re-order to ensure we're trying the most detailed formats first
+      try_formats <- try_formats[order(nchar(try_formats),
+                                       try_formats,
+                                       decreasing = TRUE)]
+
+      t$value <- as.POSIXlt(t$value,
+                            tz = "UTC",
+                            tryFormats = try_formats)
       return(t)
     },
     # Time without a date
