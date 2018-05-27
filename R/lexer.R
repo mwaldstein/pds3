@@ -17,10 +17,10 @@ odl_lexer <- R6::R6Class("Lexer",
     tokens = TOKENS,
     literals = LITERALS,
     # Order is important here!
-    t_POINTER = function(re='\\^[A-Z][A-Z0-9_]+', t) {
+    t_POINTER = function(re="\\^[A-Z][A-Z0-9_]+", t) {
       return(t)
     },
-    t_STRING = function(re='"[^"]+"', t) {
+    t_STRING = function(re="\"[^\"]+\"", t) {
       # Remove quotes
       t$value <- substring(t$value, 2, nchar(t$value) - 1)
       return(t)
@@ -32,7 +32,7 @@ odl_lexer <- R6::R6Class("Lexer",
     },
     # Date, with or without a time
     t_DATE = function(re=
-      '\\d{4}\\-(\\d{2}\\-\\d{2}|\\d{3})(T\\d{2}:\\d{2}(:\\d{1,2}(.\\d+)?)?)?(\\+\\d+|\\-\\d+|Z)?',
+      "\\d{4}\\-(\\d{2}\\-\\d{2}|\\d{3})(T\\d{2}:\\d{2}(:\\d{1,2}(.\\d+)?)?)?(\\+\\d+|\\-\\d+|Z)?",
     t) {
       # Change any zone to more standard format
 
@@ -43,8 +43,9 @@ odl_lexer <- R6::R6Class("Lexer",
         if (grepl(":", tz_offset, fixed = TRUE)) {
           tz_offset <- paste0(
             lapply(strsplit(tz_offset, ":"), function(comp) {
-              sprintf("%02d", strtoi(comp))
-            })[[1]], collapse = "")
+                sprintf("%02d", strtoi(comp))
+              }
+            )[[1]], collapse = "")
         } else if (nchar(tz_offset) == 4) {
           # We're already in expected form
         } else {
@@ -88,24 +89,24 @@ odl_lexer <- R6::R6Class("Lexer",
         return(t)
       },
     t_REAL = function(re=
-      '[+-]?(\\d+[Ee][+-]?[0-9]+|((\\d+\\.\\d+|\\d+\\.|\\.\\d+)([Ee][+-]?[0-9]+)?))',
+      "[+-]?(\\d+[Ee][+-]?[0-9]+|((\\d+\\.\\d+|\\d+\\.|\\.\\d+)([Ee][+-]?[0-9]+)?))",
       t) {
       t$value <- as.numeric(t$value)
       return(t)
     },
     # Based Integer
-    t_BINT = function(re='[0-9]+#[+-]?[0-9A-Fa-f]+#',t) {
+    t_BINT = function(re="[0-9]+#[+-]?[0-9A-Fa-f]+#", t) {
       components <- strsplit(t$value, "#")[[1]]
       t$value <- strtoi(components[2], components[1])
       return(t)
     },
     # Standard Integer
-    t_DINT = function(re='[+-]?[0-9]+', t) {
+    t_DINT = function(re="[+-]?[0-9]+", t) {
       t$value <- strtoi(t$value)
       return(t)
     },
-    t_UNIT = '<[^>]+>',
-    t_IDENTIFIER = function(re='[A-Z][A-Z0-9_:]+', t) {
+    t_UNIT = "<[^>]+>",
+    t_IDENTIFIER = function(re="[A-Z][A-Z0-9_:]+", t) {
       if (t$value == "END") t$type <- "END"
       else if (t$value == "END_GROUP") t$type <- "END_GROUP"
       else if (t$value == "END_OBJECT") t$type <- "END_OBJECT"
@@ -115,7 +116,7 @@ odl_lexer <- R6::R6Class("Lexer",
 
       return(t)
     },
-    t_COMMENT = function(re='/\\*.+?\\*/', t) {
+    t_COMMENT = function(re="/\\*.+?\\*/", t) {
       return()
     },
     t_ignore = " \t\r\n",

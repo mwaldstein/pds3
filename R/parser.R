@@ -1,15 +1,15 @@
 parser <- R6::R6Class("Parser",
   public = list(
-    tokens = TOKENS[TOKENS != 'COMMENT'],
+    tokens = TOKENS[TOKENS != "COMMENT"],
     literals = LITERALS,
     name_stack = c(),
     obj_stack = list(list()),
     p_label = function(doc="label : record
                                   | label record
                                   | label END", p) {
-      if(p$length() == 2) {
+      if (p$length() == 2) {
         p$set(1, list(p$get(2)))
-      } else if(length(p$get(3)) == 1 && p$get(3) == "END") {
+      } else if (length(p$get(3)) == 1 && p$get(3) == "END") {
         p$set(1, p$get(2))
       } else {
         tmp <- p$get(2)
@@ -44,7 +44,7 @@ parser <- R6::R6Class("Parser",
                                                       | sequence_values value", p) {
       if (p$length() == 3 && p$get(3) == ",") {
         p$set(1, p$get(2))
-      } else if (typeof(p$get(2)) == 'list' && !is.null(p$get(2)$unit)) {
+      } else if (typeof(p$get(2)) == "list" && !is.null(p$get(2)$unit)) {
         p$set(1, list(p$get(2), p$get(3)))
       } else {
         tmp <- p$get(2)
@@ -57,7 +57,7 @@ parser <- R6::R6Class("Parser",
     },
     p_detailed_pointer = function(doc="pointer : POINTER '=' '(' STRING ',' DINT ')'
                                                | POINTER '=' STRING", p) {
-      tmp <- list(action = 'pointer', name = p$get(2))
+      tmp <- list(action = "pointer", name = p$get(2))
       if (p$length() == 4) {
         tmp$value <- p$get(4)
         tmp$offset <- -1
@@ -68,7 +68,7 @@ parser <- R6::R6Class("Parser",
       p$set(1, tmp)
     },
     p_assignment = function(doc="assignment : IDENTIFIER '=' value", p) {
-      tmp <- list(action = 'assignment',
+      tmp <- list(action = "assignment",
                   name   = p$get(2),
                   value  = p$get(4))
       p$set(1, tmp)
@@ -81,7 +81,7 @@ parser <- R6::R6Class("Parser",
     },
     p_nest_begin = function(doc = "nest_start : BEGIN_GROUP '=' IDENTIFIER
                                               | BEGIN_OBJECT '=' IDENTIFIER", p) {
-      tmp <- list(action = 'group_start',
+      tmp <- list(action = "group_start",
                   name   = p$get(4))
       p$set(1, tmp)
     },
@@ -89,7 +89,7 @@ parser <- R6::R6Class("Parser",
                                           | END_GROUP
                                           | END_OBJECT '=' IDENTIFIER
                                           | END_OBJECT", p) {
-      tmp <- list(action = 'group_end')
+      tmp <- list(action = "group_end")
       if (p$length() == 4) {
         tmp$name <- p$get(4)
       }
@@ -97,8 +97,8 @@ parser <- R6::R6Class("Parser",
     },
     p_error = function(p) {
       cat("ERR")
-      if(is.null(p)) cat("Syntax error at EOF")
-      else           cat(sprintf("Syntax error at '%s'", p$value))
+      if (is.null(p)) cat("Syntax error at EOF")
+      else            cat(sprintf("Syntax error at '%s'", p$value))
     }
   )
 )

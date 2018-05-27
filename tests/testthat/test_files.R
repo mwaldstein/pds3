@@ -1,4 +1,4 @@
-context('Real file tests')
+context("Real file tests")
 
 test_that("mv10110413_6000000_001_rr.lbl", {
   file.name <- "mv10110413_6000000_001_rr.lbl"

@@ -16,9 +16,6 @@ extract <- function (string) {
 }
 
 end_pos <- function(x) {
-  # Alternative, but catches too many 'end's
-  # m <- gregexpr("\\bEND\\b", string, perl = T)
-  # end_label<- max(m[[1]]) + 2
   lexer <- rly::lex(odl_lexer)
 
   # Force upper for purpose of finding END
@@ -26,6 +23,6 @@ end_pos <- function(x) {
   while (TRUE) {
     t <- lexer$token()
     if (is.null(t)) return (-1)
-    if (t$type == 'END') return(t$lexpos + 2)
+    if (t$type == "END") return(t$lexpos + 2)
   }
 }

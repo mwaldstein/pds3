@@ -55,7 +55,7 @@ test_that("Simple OBJECT", {
 
   expect_length(res, 2)
   expect_equal(res$TEST, 12312)
-  expect_equal(res$OBJECT1$TEST2, 'INNER')
+  expect_equal(res$OBJECT1$TEST2, "INNER")
 })
 
 test_that("Merger Object Assignment", {

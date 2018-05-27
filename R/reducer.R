@@ -5,13 +5,12 @@ reduce <- function(dat) {
 
   for (i in seq_along(dat)) {
     cmd <- dat[[i]]
-    # cat(sprintf("\n[%03d:%d:%d]\t%s #%s#", i, length(obj_stack),
-    #             length(name_stack), cmd$action, cmd$name))
-    if (cmd$action == 'assignment') obj_stack[[length(obj_stack)]][[cmd$name]] <- cmd$value
-    else if (cmd$action == 'group_start') {
+    if (cmd$action == "assignment") {
+      obj_stack[[length(obj_stack)]][[cmd$name]] <- cmd$value
+    } else if (cmd$action == "group_start") {
       obj_stack[[length(obj_stack) + 1]] <- list()
       name_stack <- c(cmd$name, name_stack)
-    } else if (cmd$action == 'group_end') {
+    } else if (cmd$action == "group_end") {
       # Check if there is already a object...
       assign_pos <- length(obj_stack) - 1
       obj_name <- name_stack[1]
@@ -39,7 +38,7 @@ reduce <- function(dat) {
       } else {
         name_stack <- c()
       }
-    } else if (cmd$action == 'pointer') {
+    } else if (cmd$action == "pointer") {
       obj_stack[[length(obj_stack)]][[cmd$name]] <- list(value = cmd$value, offset = cmd$offset)
     }
   }

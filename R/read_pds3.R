@@ -35,7 +35,7 @@ pds3_read <- function(x, util = pds3_lexer_parser(), assume_complete = T) {
   # get just the label
   # TODO: This should respect a "extract.data" parameter and stop at the END to
   # avoid long files.
-  dat <- list(label = x, extra_data = '')
+  dat <- list(label = x, extra_data = "")
   if (!assume_complete) {
     dat <- extract(x)
   }

@@ -11,7 +11,7 @@ expect_lex_token <- function(string, value, type) {
     # Dates can live in different timezones, so a deep comparison inevitable
     # fails.
     expect_true(token$value == value)
-    expect_true((token$value - value) == 0)
+    expect_true( (token$value - value) == 0)
   } else {
     eval(bquote(expect_equal(.(token$value), .(value))))
   }
