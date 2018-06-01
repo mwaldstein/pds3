@@ -3,7 +3,7 @@
 pds3
 ====
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/pds3)](https://cran.r-project.org/package=pds3) [![Travis-CI Build Status](https://travis-ci.org/mwaldstein/pds3.svg?branch=master)](https://travis-ci.org/mwaldstein/pds3) [![codecov.io](https://codecov.io/github/mwaldstein/pds3/coverage.svg?branch=master)](https://codecov.io/github/mwaldstein/pds3?branch=master)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/pds3)](https://cran.r-project.org/package=pds3) [![Travis-CI Build Status](https://travis-ci.org/mwaldstein/pds3.svg?branch=master)](https://travis-ci.org/mwaldstein/pds3) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mwaldstein/pds3?branch=master&svg=true)](https://ci.appveyor.com/project/mwaldstein/pds3) [![codecov.io](https://codecov.io/github/mwaldstein/pds3/coverage.svg?branch=master)](https://codecov.io/github/mwaldstein/pds3?branch=master)
 
 pds3 reads [PDS3](https://pds.jpl.nasa.gov/datastandards/pds3/) files, a standard published by JPL and used throughout NASA space missions. While PDS3 is being supplanted by PDS4, a XML based standard, PDS3 is still being used and is needed for accessing historic data.
 
