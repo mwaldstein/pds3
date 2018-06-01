@@ -105,7 +105,11 @@ odl_lexer <- R6::R6Class("Lexer",
       t$value <- strtoi(t$value)
       return(t)
     },
-    t_UNIT = "<[^>]+>",
+    t_UNIT = function(re="<[^>]+>", t) {
+      # Remove brackets
+      t$value <- substring(t$value, 2, nchar(t$value) - 1)
+      return(t)
+    },
     t_IDENTIFIER = function(re="[A-Z][A-Z0-9_:]+", t) {
       if (t$value == "END") t$type <- "END"
       else if (t$value == "END_GROUP") t$type <- "END_GROUP"

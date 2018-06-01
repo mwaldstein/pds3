@@ -1,6 +1,6 @@
 Package: pds3
-Version: 0.0.0.9000
-Title: Manipulate PDS3 ODL files
+Version: 0.5.0
+Title: Manipulate PDS3 ODL Files
 Description: Reads PDS3 ODL formatted files, typically used in
   NASA missions for storing metadata about observations.
 Authors@R: person("Micah", "Waldstein", , "micah@waldste.in", c("aut", "cre"))

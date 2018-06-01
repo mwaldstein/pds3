@@ -9,7 +9,7 @@ r:
   - release
 
 env:
-  - PACKAGE_VERSION="0.0.0.9000"
+  - PACKAGE_VERSION="0.5.0"
 
 os:
   - linux
