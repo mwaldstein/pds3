@@ -1,5 +1,5 @@
 Package: pds3
-Version: 0.5.0
+Version: 0.5.0.9000
 Title: Manipulate PDS3 ODL Files
 Description: Reads Planetary Data Systems v3 (PDS3 - <https://pds.jpl.nasa.gov/>)
   Object Description Language (ODL) formatted files, typically used in NASA

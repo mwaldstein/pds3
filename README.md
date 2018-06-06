@@ -17,9 +17,17 @@ References
 Installation
 ------------
 
-pds3 is not yet stable enough to be on [CRAN](https://CRAN.R-project.org). You can install the development version using devtools with:
+pds3 is available from [CRAN](https://CRAN.R-project.org), so can be simply installed via
 
 ``` r
+install.packages("edgarWebR")
+```
+
+To install the development version,
+
+``` r
+# Install the development version from GitHub:
+# install.packages("devtools")
 devtools::install_github("mwaldstein/pds3")
 ```
 
