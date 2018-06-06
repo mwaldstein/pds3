@@ -1,6 +1,10 @@
+# PDS3 ODL lexer definition. Strictly used internally for now.
+#
+# We don't strictly follow the token naming in the spec due to more liberal parsing
+# in R, but it is all close enough that it can be followed with the spec in
+# hand
+#
 # Reference: https://pds.jpl.nasa.gov/datastandards/pds3/standards/sr/Chapter12.pdf
-# We don't strictly follow the token naming due to more liberal parsing in R,
-# but it is all close enough
 # Also: https://pds.nasa.gov/tools/about/pds3-tools/pds-tools-package.shtml
 
 TOKENS <- c("IDENTIFIER", "POINTER", "STRING", "SYMBOL",

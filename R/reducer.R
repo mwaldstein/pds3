@@ -1,3 +1,6 @@
+# Takes a list of ODL commands and builds a list reflecting the label
+# Handles nested object, multiple instances of the same object, and assignments
+#' @noRd
 reduce <- function(dat) {
   obj_stack <- list(list())
   name_stack <- c()

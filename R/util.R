@@ -1,3 +1,7 @@
+# Splits a string into label and data components by finding the end of the ODL
+# block. Assumes that the ODL is at the start and that there is no additional
+# label information elsewhere in the file
+#' @noRd
 extract <- function (string) {
   # Find 'END'
   end_label <- end_pos(string)
@@ -15,6 +19,8 @@ extract <- function (string) {
   ))
 }
 
+
+#' @noRd
 end_pos <- function(x) {
   lexer <- rly::lex(odl_lexer)
 
@@ -25,4 +31,5 @@ end_pos <- function(x) {
     if (is.null(t)) return (-1)
     if (t$type == "END") return(t$lexpos + 2)
   }
+  return(nchar(x))
 }

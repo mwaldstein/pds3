@@ -1,3 +1,3 @@
-# pds3 0.0.0.9000
+# pds3 0.5.0
 
-* Added a `NEWS.md` file to track changes to the package.
+* Initial Release

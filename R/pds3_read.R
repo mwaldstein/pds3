@@ -4,7 +4,7 @@
 #'
 #' @param x A String of the PDS3 to parse, containing one of the following:
 #'   \describe{
-#'     \item{Content}{Conent you want to parse}
+#'     \item{Content}{String you want to parse}
 #'     \item{Filename}{Path to a file containing a PDS3}
 #'   }
 #' @param assume_complete (default: TRUE) Assume that there is no content after
@@ -20,8 +20,12 @@
 #'       there is no content after the label, this will be  an empty string}
 #'     \item{odl}{Parsed label content.}
 #'   }
+#' @examples
+#'pds3_read('PDS_VERSION_ID = PDS3
+#'  PRODUCT_CREATION_TIME         = 2017-05-31T18:42:49
+#'  END')
 #' @export
-pds3_read <- function(x, util = pds3_lexer_parser(), assume_complete = T) {
+pds3_read <- function(x, util = pds3_lexer_parser(), assume_complete = TRUE) {
   # Check if x is a file
   if (nchar(x) < 500) {
     if (file.exists(x)) {

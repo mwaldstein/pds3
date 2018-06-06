@@ -1,3 +1,6 @@
+# PDS3 ODL parser definition. Strictly used internally for now.
+#
+# Interprets into native types where possible.
 parser <- R6::R6Class("Parser",
   public = list(
     tokens = TOKENS[TOKENS != "COMMENT"],

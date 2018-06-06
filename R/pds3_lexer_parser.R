@@ -12,6 +12,8 @@
 #'     \item{lexer}{The rly lexer}
 #'     \item{parser}{The rly parser}
 #'   }
+#' @examples
+#'util <- pds3_lexer_parser()
 #' @export
 pds3_lexer_parser <- function(debug = FALSE) {
   return(list(
