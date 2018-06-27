@@ -1,12 +1,16 @@
 ---
 title: "Getting Started With PDS3"
 author: "Micah J Waldstein (micah@waldste.in)"
-date: "`r Sys.Date()`"
+date: 2018-05-22
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Getting Started With PDS3}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+type: post
+draft: false
+projects: ["pds3"]
+categories: ["RStats"]
 ---
 
 ```{r setup, include = FALSE}
@@ -27,13 +31,15 @@ a heatmap of Mars of all the images taken? This is the package for you!
 
 ## Getting Started
 
-The package is not yet on CRAN, so to install you'll want to use `devtools` to
-get the development version from Github.
+pds3 is available from CRAN, so can be simply installed via
+```{r install, eval=FALSE}
+install.packages("pds3")
+```
 
-```{r eval=FALSE}
-# Install devtools if you don't already have it
-install.packages("devtools")
-# Install the development version of pds3
+To install the development version you can use `devtools` to install:
+```{r install_dev, eval=FALSE}
+# Install the development version from GitHub:
+install.packages("devtools") # If you don't already have it
 devtools::install_github("mwaldstein/pds3")
 ```
 
